@@ -9,7 +9,7 @@ const devConfig = {
     devServer: {
         port: 8081,
         historyApiFallback:{
-            index: 'index.html'
+            index: '/index.html'
         }
     },
 
@@ -20,7 +20,13 @@ const devConfig = {
             exposes:{
                 './Payments': './src/bootstrap'
             },
-            shared: packageJson.dependencies,
+            //shared: packageJson.dependencies,
+            shared: {
+                react: {
+                    singleton: true,
+                },
+                
+            } 
         }),
         new HtmlWebpackPlugin(
             {

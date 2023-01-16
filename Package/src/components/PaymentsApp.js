@@ -4,7 +4,7 @@ import CommonButton from '../components/common/CommonButton';
 import { Box } from '@mui/material';
 import { Padding } from '@mui/icons-material';
 import Datatable from '../components/common/Datatable';
-import UserTable from '../components/UserTable';
+import PaymentTable from './PaymentTable';
 const PaymentsApp = () => {
   const buttonStyles = {
     frontSize: '0.875rem',
@@ -37,7 +37,7 @@ const PaymentsApp = () => {
             </CommonButton>
             </Box>
             <hr />
-            <UserTable />
+            <PaymentTable />
         </Grid>
        
     )

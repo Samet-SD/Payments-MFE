@@ -1,22 +1,34 @@
 import React from 'react';
 import ReactDom from 'react-dom'
 import App from './App'
+import { createMemoryHistory } from 'history'
 
-//Mount function to start up the app
-const launch = (el) => {
-    ReactDom.render(<App />, el);
-    
+const launch = (el, {onNavigate}) => {
+    const history = createMemoryHistory();
+    if(onNavigate){
+        history.listen(onNavigate);
+    }
+
+ReactDom.render(<App history ={onNavigate}/>, el);
+//If we are in development and in isolation, call app imediately
+return {
+    onParentNavigate({pathname}) {
+        const myPath = history.location;
+
+        if(pathname !== myPath){
+            history.push(nextPath);
+        }
+    }
+}
 };
 
-//If we are in development and in isolation, call app imediately
 if(process.env.NODE_ENV =="development"){
    let dev = document.querySelector('#_payments-root');
-    
+   
     if (dev) {
-       launch(dev);
+       launch(dev, {});
     }
 }
 
 export { launch }
 
-//we are runnung through container we shozuld export the mpuint function
